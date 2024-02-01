@@ -1,0 +1,14 @@
+schema: '2.0'
+stages:
+  train_LR:
+    cmd: python train_lr.py
+    deps:
+    - path: data/features.csv
+      hash: md5
+      md5: 436702d749ce96816544519a1126fa5f
+      size: 9885
+    outs:
+    - path: models/model_LR.pkl
+      hash: md5
+      md5: 14ae65a115c66037bc522ff4316248f3
+      size: 1279

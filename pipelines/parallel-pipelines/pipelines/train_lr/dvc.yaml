@@ -1,0 +1,9 @@
+stages:
+
+  train_LR:
+    cmd: python train_lr.py
+    wdir: ../..
+    deps:
+      - data/features.csv
+    outs:
+      - models/model_LR.pkl

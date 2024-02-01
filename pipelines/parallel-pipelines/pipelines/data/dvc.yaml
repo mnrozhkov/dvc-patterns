@@ -1,0 +1,8 @@
+stages:
+  data:
+    cmd: python prepare_data.py
+    wdir: ../..
+    deps:
+      - prepare_data.py
+    outs:
+      - data/features.csv

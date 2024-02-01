@@ -1,0 +1,10 @@
+stages:
+
+  evaluate:
+    cmd: python evaluate_models.py
+    wdir: ../..
+    deps:
+      - models/model_RF.pkl
+      - models/model_LR.pkl
+    metrics:
+      - reports/metrics_report.json

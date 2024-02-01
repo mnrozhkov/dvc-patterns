@@ -1,0 +1,14 @@
+schema: '2.0'
+stages:
+  train_RF:
+    cmd: python train_rf.py
+    deps:
+    - path: data/features.csv
+      hash: md5
+      md5: 07396d238ac3d6af7af69ae3e2f39ffb
+      size: 9873
+    outs:
+    - path: models/model_RF.pkl
+      hash: md5
+      md5: 6e4ec2d1b5ce324442eb8802db93467b
+      size: 402953

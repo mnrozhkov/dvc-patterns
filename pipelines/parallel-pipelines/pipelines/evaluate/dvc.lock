@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  evaluate:
+    cmd: python evaluate_models.py
+    deps:
+    - path: models/model_LR.pkl
+      hash: md5
+      md5: 164b057bb8b8790a6e27f977ebb6e22f
+      size: 1279
+    - path: models/model_RF.pkl
+      hash: md5
+      md5: d7d1dae5440e57e94c2c331b21c3b37a
+      size: 404233
+    outs:
+    - path: reports/metrics_report.json
+      hash: md5
+      md5: 18c077e005595e16cf2c4cc305500fda
+      size: 53
