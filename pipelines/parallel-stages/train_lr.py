@@ -1,8 +1,13 @@
 import pandas as pd
 import joblib
 from sklearn.linear_model import LogisticRegression 
+import time
 
 def train_model_LR():
+
+    print("Training Logistic Regression model - START")
+    time.sleep(20)
+
     # Load the prepared data
     data = pd.read_csv('data/features.csv')
 
@@ -16,6 +21,8 @@ def train_model_LR():
 
     # Save the trained model
     joblib.dump(model, 'models/model_LR.pkl')
+
+    print("Training Logistic Regression model - COMPLETE")
 
 if __name__ == "__main__":
     train_model_LR()

@@ -1,8 +1,13 @@
 import pandas as pd
 import joblib
-from sklearn.ensemble import RandomForestClassifier # Example model
+from sklearn.ensemble import RandomForestClassifier
+import time
 
 def train_model_RF():
+
+    print("Training Random Forest model - START")
+    
+
     # Load the prepared data
     data = pd.read_csv('data/features.csv')
 
@@ -16,6 +21,9 @@ def train_model_RF():
 
     # Save the trained model
     joblib.dump(model, 'models/model_RF.pkl')
+
+    time.sleep(20)
+    print("Training Random Forest model - COMPLETE")
 
 if __name__ == "__main__":
     train_model_RF()
