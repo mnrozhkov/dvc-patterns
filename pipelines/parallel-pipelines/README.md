@@ -6,14 +6,14 @@ In Data Version Control (DVC), the concept of "Parallel Pipelines" refers to a d
 
 ```mermaid
 graph TD;
-    subgraph model_rf
+    subgraph model_rf ["train_rf/dvc.yaml"]
         train_rf --> test_rf;
     end 
-    subgraph model_lr
+    subgraph model_lr ["train_lr/dvc.yaml"]
         train_lr --> test_lr;
     end 
 
-    1(data/dvc.yaml) --> model_rf(model_rf):::focusStyle;
+    1(data/dvc.yaml) --> model_rf(model_rf/dvc.yaml):::focusStyle;
     1(data/dvc.yaml) --> model_lr(model_lr):::focusStyle;
 
     model_rf --> 4(evaluate/dvc.yaml);
