@@ -72,7 +72,7 @@ graph TD;
 
 This is a community-driven project, and your contributions are vital to its success. You can contribute in several ways:
 
-Share a Pattern: Document a design pattern you've found useful in your projects.
-Contribute with Examples: Implement an existing pattern in a new context and share your findings.
-Improve Documentation: Help refine the explanations, add clarity, or fix errors.
-Spread the Word: Share this project with your network to grow the community.
+- Share a Pattern: Document a design pattern you've found useful in your projects.
+- Contribute with Examples: Implement an existing pattern in a new context and share your findings.
+- Improve Documentation: Help refine the explanations, add clarity, or fix errors.
+- Spread the Word: Share this project with your network to grow the community.
