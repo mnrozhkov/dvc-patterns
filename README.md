@@ -64,7 +64,7 @@ graph TD;
     model_rf --> 4(evaluate/dvc.yaml);
     model_lr --> 4(evaluate/dvc.yaml);
 
-    classDef focusStyle fill:#f49f,stroke-width:1px
+    classDef focusStyle fill:#f49f,stroke-width:1px,rx:5,ry:5
 
 ```
 
