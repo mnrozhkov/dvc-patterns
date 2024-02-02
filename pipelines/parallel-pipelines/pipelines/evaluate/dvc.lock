@@ -5,14 +5,14 @@ stages:
     deps:
     - path: models/model_LR.pkl
       hash: md5
-      md5: 164b057bb8b8790a6e27f977ebb6e22f
+      md5: 7dffa0c0d4abf1ae8b6d64bb2b380001
       size: 1279
     - path: models/model_RF.pkl
       hash: md5
-      md5: d7d1dae5440e57e94c2c331b21c3b37a
-      size: 404233
+      md5: 495dbbacbd79efc3aedfa57ee8f945d7
+      size: 378953
     outs:
-    - path: reports/metrics_report.json
+    - path: reports/evaluate_metrics_report.json
       hash: md5
-      md5: 18c077e005595e16cf2c4cc305500fda
+      md5: 1dd23fbc92b96518255a26a06f53a339
       size: 53

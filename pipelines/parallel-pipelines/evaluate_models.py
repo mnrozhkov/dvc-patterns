@@ -25,7 +25,7 @@ def evaluate_models():
         'model_RF_accuracy': accuracy_RF,
         'model_LR_accuracy': accuracy_LR
     }
-    with open('reports/metrics_report.json', 'w') as f:
+    with open('reports/evaluate_metrics_report.json', 'w') as f:
         json.dump(metrics, f)
 
 if __name__ == "__main__":

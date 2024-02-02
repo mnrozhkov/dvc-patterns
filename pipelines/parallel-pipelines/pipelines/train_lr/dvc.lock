@@ -5,10 +5,38 @@ stages:
     deps:
     - path: data/features.csv
       hash: md5
-      md5: 436702d749ce96816544519a1126fa5f
-      size: 9885
+      md5: 2228805f2122c5781ebf1bce4a6ac0d8
+      size: 9897
     outs:
     - path: models/model_LR.pkl
       hash: md5
-      md5: 14ae65a115c66037bc522ff4316248f3
+      md5: 519b3e4a3e7385eb9de1e1733755a36a
       size: 1279
+  train_lr:
+    cmd: python train_lr.py
+    deps:
+    - path: data/features.csv
+      hash: md5
+      md5: 082fdf94b7c2bd0e4700abfb81ba0dec
+      size: 9905
+    outs:
+    - path: models/model_lr.pkl
+      hash: md5
+      md5: 7dffa0c0d4abf1ae8b6d64bb2b380001
+      size: 1279
+  test_lr:
+    cmd: python test_model.py --model_path models/model_lr.pkl --model_name lr
+    deps:
+    - path: data/features.csv
+      hash: md5
+      md5: 082fdf94b7c2bd0e4700abfb81ba0dec
+      size: 9905
+    - path: models/model_lr.pkl
+      hash: md5
+      md5: 7dffa0c0d4abf1ae8b6d64bb2b380001
+      size: 1279
+    outs:
+    - path: reports/lr_metrics_report.json
+      hash: md5
+      md5: 81f7b4f65884706b03ab8dbf8417e296
+      size: 18

@@ -7,4 +7,4 @@ stages:
       - models/model_RF.pkl
       - models/model_LR.pkl
     metrics:
-      - reports/metrics_report.json
+      - reports/evaluate_metrics_report.json

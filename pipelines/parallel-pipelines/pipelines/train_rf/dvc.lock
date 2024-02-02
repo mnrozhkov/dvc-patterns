@@ -5,10 +5,38 @@ stages:
     deps:
     - path: data/features.csv
       hash: md5
-      md5: 07396d238ac3d6af7af69ae3e2f39ffb
-      size: 9873
+      md5: 2228805f2122c5781ebf1bce4a6ac0d8
+      size: 9897
     outs:
     - path: models/model_RF.pkl
       hash: md5
-      md5: 6e4ec2d1b5ce324442eb8802db93467b
-      size: 402953
+      md5: 304296b5df7b8f61c8f3228fccce8602
+      size: 400713
+  train_rf:
+    cmd: python train_rf.py
+    deps:
+    - path: data/features.csv
+      hash: md5
+      md5: 082fdf94b7c2bd0e4700abfb81ba0dec
+      size: 9905
+    outs:
+    - path: models/model_rf.pkl
+      hash: md5
+      md5: 495dbbacbd79efc3aedfa57ee8f945d7
+      size: 378953
+  test_rf:
+    cmd: python test_model.py --model_path models/model_rf.pkl --model_name rf
+    deps:
+    - path: data/features.csv
+      hash: md5
+      md5: 082fdf94b7c2bd0e4700abfb81ba0dec
+      size: 9905
+    - path: models/model_rf.pkl
+      hash: md5
+      md5: 495dbbacbd79efc3aedfa57ee8f945d7
+      size: 378953
+    outs:
+    - path: reports/rf_metrics_report.json
+      hash: md5
+      md5: 9a0379eaa11dd7b9e9995a62a5f21656
+      size: 17

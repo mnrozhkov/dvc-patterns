@@ -1,9 +1,18 @@
 stages:
 
-  train_RF:
+  train_rf:
     cmd: python train_rf.py
     wdir: ../..
     deps:
       - data/features.csv
     outs:
-      - models/model_RF.pkl
+      - models/model_rf.pkl
+
+  test_rf: 
+    cmd: python test_model.py --model_path models/model_rf.pkl --model_name rf
+    wdir: ../..
+    deps:
+      - models/model_rf.pkl
+      - data/features.csv
+    outs:
+      - reports/rf_metrics_report.json
