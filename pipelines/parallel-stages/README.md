@@ -6,22 +6,19 @@ In Data Version Control (DVC), the concept of "Parallel Stages" refers to a desi
 
 ```mermaid
 graph TD;
-    prepare_data --> train_RF["train_RF"];
-    prepare_data --> train_LR["train_LR"];
-    train_RF --> evaluate;
-    train_LR --> evaluate;
+    data --> train_rf["Random Forest"];
+    data --> train_lr["Linear Regression"];
+    train_rf --> evaluate;
+    train_lr --> evaluate;
 ```
 
 Run
 
 ```bash
-
-dvc repro train_RF -f && dvc repro train_LR -f 
-dvc exp run train_RF -f && dvc exp run train_LR -f 
-dvc repro evaluate -f 
-```
-
-```mermaid
+dvc repro data                                  # Prepare features
+dvc repro -s train_rf & dvc repro -s train_lr   # Train models in parallel
+dvc repro -s train_lr -f                        # Train only Linear Regression
+dvc repro evaluate                              # Run downstream stages
 ```
 
 > Notes:

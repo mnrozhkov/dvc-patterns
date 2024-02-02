@@ -6,24 +6,24 @@ stages:
     outs:
       - data/features.csv
 
-  train_RF:
+  train_rf:
     cmd: python train_rf.py
     deps:
       - data/features.csv
     outs:
-      - models/model_RF.pkl
+      - models/model_rf.pkl
 
-  train_LR:
+  train_lr:
     cmd: python train_lr.py
     deps:
       - data/features.csv
     outs:
-      - models/model_LR.pkl
+      - models/model_lr.pkl
 
   evaluate:
     cmd: python evaluate_models.py
     deps:
-      - models/model_RF.pkl
-      - models/model_LR.pkl
+      - models/model_rf.pkl
+      - models/model_lr.pkl
     metrics:
       - reports/metrics_report.json
