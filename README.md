@@ -27,69 +27,46 @@ export PYTHONPATH=$PWD
 
 ## Patterns
 
-### 1 - Pipelines
+### 1 - Parallel Stages
 
-#### Parallel Stages (training)
-
-> Example: [pipelines/parallel-stages](pipelines/parallel-stages)
-
-In Data Version Control (DVC), the concept of "Parallel Stages" refers to a design pattern where multiple stages of a pipeline are executed concurrently, rather than sequentially. This approach is particularly useful when you have stages that are independent of each other and can be run simultaneously, thereby improving the efficiency and reducing the overall runtime of your pipeline.
+| Pattern | Description | Example |
+| --- | --- | --- |
+| Parallel Stages | Run multiple independed stages of a pipeline concurrently | [pipelines/parallel-stages](pipelines/parallel-stages) |
 
 ```mermaid
 graph TD;
-    prepare_data --> train_RF["train_RF"];
-    prepare_data --> train_LR["train_LR"];
-    train_RF --> evaluate;
-    train_LR --> evaluate;
+    data --> train_rf["Random Forest"]:::focusStyle;
+    data --> train_lr["Linear Regression"]:::focusStyle;
+    train_rf --> evaluate;
+    train_lr --> evaluate;
+
+    classDef focusStyle fill:#f49f,stroke-width:1px
 ```
-
-Run
-
-```bash
-dvc repro data
-
-dvc repro train_RF -f && dvc repro train_LR -f 
-# dvc exp run train_RF -f && dvc exp run train_LR -f 
-dvc repro evaluate
-```
-
-```mermaid
-```
-
-> Notes:
->
-> - This example assumes that parallel stages are running on the same machine.
-> - This pattern can be applied to any stage of a pipeline, not just training.
-
-
 
 ### 2 - Parallel Pipelines
 
-> Example: [pipelines/parallel-pipelines](pipelines/parallel-pipelines)
-> 
+| Pattern | Description | Example |
+| --- | --- | --- |
+| Parallel Pipelines | Run multiple pipelines concurrently | [pipelines/parallel-pipelines](pipelines/parallel-pipelines) |
 
 ```mermaid
 graph TD;
-    data/dvc.yaml --> train_rf/dvc.yaml;
-    data/dvc.yaml --> train_lr/dvc.yaml;
-    train_rf/dvc.yaml --> evaluate/dvc.yaml;
-     train_lr/dvc.yaml --> evaluate/dvc.yaml;
+    subgraph model_rf
+        train_rf --> test_rf;
+    end 
+    subgraph model_lr
+        train_lr --> test_lr;
+    end 
+
+    1(data/dvc.yaml) --> model_rf(model_rf):::focusStyle;
+    1(data/dvc.yaml) --> model_lr(model_lr):::focusStyle;
+
+    model_rf --> 4(evaluate/dvc.yaml);
+    model_lr --> 4(evaluate/dvc.yaml);
+
+    classDef focusStyle fill:#f49f,stroke-width:1px
+
 ```
-
-> Notes:
->
-> - This example assumes that parallel stages are running on the same machine.
-> - This pattern can be applied to any stage of a pipeline, not just training.
-
-
-Run pipelines model training in parallel:
-
-```bash
-dvc repro pipelines/data/dvc.yaml
-dvc repro pipelines/train_rf/dvc.yaml -f & dvc repro pipelines/train_lr/dvc.yaml -f
-dvc repro pipelines/evaluate/dvc.yaml
-```
-
 
 ## Contributing
 
