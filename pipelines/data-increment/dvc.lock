@@ -1,0 +1,88 @@
+schema: '2.0'
+stages:
+  data:
+    cmd: python prepare_data.py
+    deps:
+    - path: prepare_data.py
+      hash: md5
+      md5: 02cb8f8e9376e3171ab4750fb9d9e57e
+      size: 682
+    outs:
+    - path: data/features.csv
+      hash: md5
+      md5: 93d6b52e2349326b74a0124b1e9229af
+      size: 9892
+  evaluate:
+    cmd: python evaluate_models.py
+    deps:
+    - path: models/model_lr.pkl
+      hash: md5
+      md5: ee35c69f9270af1df4dff499d76d9838
+      size: 1285
+    - path: models/model_rf.pkl
+      hash: md5
+      md5: 052ea4d9bc34e3dd86fd73594d52cdef
+      size: 401993
+    outs:
+    - path: reports/metrics_report.json
+      hash: md5
+      md5: 6afa8f00eb3bf3467bd492c10b3a64f8
+      size: 53
+  train_rf:
+    cmd: python train_rf.py
+    deps:
+    - path: data/features.csv
+      hash: md5
+      md5: 0e530ffe347a3e234a2469785b61dfa0
+      size: 9885
+    outs:
+    - path: models/model_rf.pkl
+      hash: md5
+      md5: 052ea4d9bc34e3dd86fd73594d52cdef
+      size: 401993
+  train_lr:
+    cmd: python train_lr.py
+    deps:
+    - path: data/features.csv
+      hash: md5
+      md5: 0e530ffe347a3e234a2469785b61dfa0
+      size: 9885
+    outs:
+    - path: models/model_lr.pkl
+      hash: md5
+      md5: ee35c69f9270af1df4dff499d76d9838
+      size: 1285
+  load_data:
+    cmd: python load_data.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 6b92bce63b62687037343984b8ae8252.dir
+      size: 0
+      nfiles: 2
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 6b92bce63b62687037343984b8ae8252.dir
+      size: 0
+      nfiles: 2
+    - path: data/processed_files.txt
+      hash: md5
+      md5: 045a6e673d95a6e8152a1d06959db93a
+      size: 20
+  prepare_data:
+    cmd: python prepare_data.py
+    deps:
+    - path: data/processed_files.txt
+      hash: md5
+      md5: 045a6e673d95a6e8152a1d06959db93a
+      size: 20
+    - path: prepare_data.py
+      hash: md5
+      md5: 02cb8f8e9376e3171ab4750fb9d9e57e
+      size: 682
+    outs:
+    - path: data/features.csv
+      hash: md5
+      md5: 0e530ffe347a3e234a2469785b61dfa0
+      size: 9885
