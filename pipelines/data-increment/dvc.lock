@@ -17,36 +17,36 @@ stages:
     deps:
     - path: models/model_lr.pkl
       hash: md5
-      md5: 56f57aec6692c63abc69a03c05bae1f5
+      md5: 81ec92e94a850e6ec8e44200d4be26df
       size: 1285
     - path: models/model_rf.pkl
       hash: md5
-      md5: 5d51f57f34b49dca81d38f5b1b366673
-      size: 389353
+      md5: 1535c4ea3a4f55237a37f3840cb96888
+      size: 410313
     outs:
     - path: reports/metrics_report.json
       hash: md5
-      md5: edc2176158c7799e33940ca1d6bd8c86
+      md5: 782c4fc213c088f9963f0bf89e0c3c0a
       size: 53
   train_rf:
     cmd: python train_rf.py
     deps:
     - path: data/features.csv
       hash: md5
-      md5: e24371750bd29e2a7a374ad2c06218b0
-      size: 9896
+      md5: 6c9dd14f2a7388955ff837612f55a8ac
+      size: 9894
     outs:
     - path: models/model_rf.pkl
       hash: md5
-      md5: 5d51f57f34b49dca81d38f5b1b366673
-      size: 389353
+      md5: 1535c4ea3a4f55237a37f3840cb96888
+      size: 410313
   train_lr:
     cmd: python train_lr.py
     deps:
     - path: data/features.csv
       hash: md5
-      md5: e24371750bd29e2a7a374ad2c06218b0
-      size: 9896
+      md5: 6c9dd14f2a7388955ff837612f55a8ac
+      size: 9894
     - path: train_lr.py
       hash: md5
       md5: d645031a1453a61a2cc825d563131360
@@ -54,33 +54,33 @@ stages:
     outs:
     - path: models/model_lr.pkl
       hash: md5
-      md5: 56f57aec6692c63abc69a03c05bae1f5
+      md5: 81ec92e94a850e6ec8e44200d4be26df
       size: 1285
   load_data:
     cmd: python load_data.py
     deps:
     - path: data/raw
       hash: md5
-      md5: 6b92bce63b62687037343984b8ae8252.dir
+      md5: b05fcbe34d09b282127deb4ad2db0c95.dir
       size: 0
-      nfiles: 2
+      nfiles: 3
     outs:
     - path: data/processed
       hash: md5
-      md5: 6b92bce63b62687037343984b8ae8252.dir
+      md5: b05fcbe34d09b282127deb4ad2db0c95.dir
       size: 0
-      nfiles: 2
+      nfiles: 3
     - path: data/processed_files.txt
       hash: md5
-      md5: 045a6e673d95a6e8152a1d06959db93a
-      size: 20
+      md5: ecc159f0d65a991ae445571f3694ad6f
+      size: 30
   prepare_data:
     cmd: python prepare_data.py
     deps:
     - path: data/processed_files.txt
       hash: md5
-      md5: 045a6e673d95a6e8152a1d06959db93a
-      size: 20
+      md5: ecc159f0d65a991ae445571f3694ad6f
+      size: 30
     - path: prepare_data.py
       hash: md5
       md5: 02cb8f8e9376e3171ab4750fb9d9e57e
@@ -88,5 +88,5 @@ stages:
     outs:
     - path: data/features.csv
       hash: md5
-      md5: e24371750bd29e2a7a374ad2c06218b0
-      size: 9896
+      md5: 6c9dd14f2a7388955ff837612f55a8ac
+      size: 9894
