@@ -1,0 +1,18 @@
+[
+    {
+        "Max Leaf Nodes": 5,
+        "Error": 0.7665731162862511
+    },
+    {
+        "Max Leaf Nodes": 50,
+        "Error": 0.907995645929953
+    },
+    {
+        "Max Leaf Nodes": 500,
+        "Error": 0.6352745967270657
+    },
+    {
+        "Max Leaf Nodes": 5000,
+        "Error": 0.8371014800543902
+    }
+]

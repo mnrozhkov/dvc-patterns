@@ -24,21 +24,36 @@ def train_model_LR():
     model = LogisticRegression()
     model.fit(X, y)
 
-    with Live(save_dvc_exp=True) as live:
-        time.sleep(3)
-        epochs = 10
-        
-        for i in range(10):
-            print(f"training on epoch: {i}")
-            live.log_metric("accuracy", i + random.random())
-            live.log_metric("f1", epochs - (i + random.random()))
-            live.next_step()
+    # Log the metrics 
+    errors = []
+    max_leaf_nodes = [5, 50, 500, 5000]
+     
+    for nodes in max_leaf_nodes:
+        error = random.random()
+        errors.append(error)
+        print(f"Max leaf nodes: {nodes}  \t ➡ Mean Absolute Error:  {error}")
+    
+    # Create a DataFrame from the lists
+    datapoints = pd.DataFrame({
+        'Max Leaf Nodes': max_leaf_nodes,
+        'Error': errors
+    })
 
-            time.sleep(epochs)
+    with Live(
+        dir="reports/train_lr",
+        save_dvc_exp=True,
+        dvcyaml=False
+    ) as live:
+        live.log_plot(
+            "errors_vs_leafs",
+            datapoints,
+            x="Max Leaf Nodes",
+            y="Error",
+            template="simple",
+            title="Errors vs Max Leaf Nodes")
 
     # Save the trained model
     joblib.dump(model, 'models/model_LR.pkl')
-
     print("Training Logistic Regression model - COMPLETE")
 
 if __name__ == "__main__":

@@ -43,14 +43,27 @@ stages:
     - models/model_lr.pkl
     metrics:
     - reports/metrics_report.json
-metrics:
-- dvclive/metrics.json
+
 plots:
-- step vs accuracy:
+- reports/train_lr/plots/metrics:
+    x: step
+- reports/train_lr/plots/custom/errors_vs_leafs.json:
+    template: simple
+    x: Max Leaf Nodes
+    y: Error
+    title: "LR: Errors vs Max Leaf Nodes"
+- reports/train_rf/plots/metrics/Error.tsv:
     template: simple
     x: step
-    y:
-      dvclive/plots/metrics/accuracy.tsv: accuracy
-
-- dvclive/plots/metrics:
-    x: step
+    y: Error
+    title: "RF: Errors vs Max Leaf Nodes"
+- dvclive_error_vs_nodes:
+    template: simple
+    x: 
+      reports/dvclive/plots/metrics/Error.tsv: Error
+    y: 
+      reports/dvclive/plots/metrics/Max_Leaf_Nodes.tsv: Max_Leaf_Nodes
+    title: "DVCLive: Errors vs Max Leaf Nodes"
+metrics:
+- reports/train_rf/metrics.json
+- reports/train_lr/metrics.json
