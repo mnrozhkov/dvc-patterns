@@ -32,7 +32,7 @@ artifacts:
     path: models/model_LR.pkl
     type: model
   model_RF:
-    path: models/model_RF.pkl
+    path: models/model_RF_new.pkl
     type: model
     labels:
     - rf

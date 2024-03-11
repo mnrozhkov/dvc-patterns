@@ -23,12 +23,13 @@ def train_model_RF():
     model.fit(X, y)
 
     # Save the trained model
-    joblib.dump(model, 'models/model_RF.pkl')
+    MODEL_PATH = "models/model_RF_new.pkl"
+    joblib.dump(model, MODEL_PATH)
 
 
     with Live() as live:
         live.log_artifact(
-            path='models/model_RF.pkl',
+            path=MODEL_PATH,
             type="model",
             name="model_RF",
             labels=["rf"],
