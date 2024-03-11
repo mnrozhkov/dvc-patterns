@@ -32,7 +32,7 @@ def train_model_LR():
 
     with Live() as live:
         live.log_artifact(
-            path='models/model_LR.pkl_wrong',
+            path='models/model_LR.pkl',
             type="model",
             name="model_LR",
             labels=["lr"],

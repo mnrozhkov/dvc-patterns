@@ -29,7 +29,7 @@ stages:
     - reports/metrics_report.json
 artifacts:
   model_LR:
-    path: models/model_LR.pkl_wrong
+    path: models/model_LR.pkl
     type: model
     labels:
     - lr
