@@ -31,8 +31,6 @@ artifacts:
   model_LR:
     path: models/model_LR.pkl
     type: model
-    labels:
-    - lr
   model_RF:
     path: models/model_RF.pkl
     type: model
